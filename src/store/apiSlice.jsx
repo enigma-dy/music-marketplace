@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://music-marketplace.vercel.app/api",
+    baseUrl: "https://music-marketplace-backend.onrender.com/api",
     credentials: "include",
   }),
   tagTypes: [
