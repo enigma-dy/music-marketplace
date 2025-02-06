@@ -44,7 +44,7 @@ export default function SongDataTable() {
       }
 
       const response = await fetch(
-        `import.meta.env.VITE_BASE_URL/api/tracks/stream/${trackId}`
+        `https://music-marketplace-backend.onrender.com/api/tracks/stream/${trackId}`
       );
       if (!response.ok) {
         throw new Error("Unable to stream track. Please try again later.");
