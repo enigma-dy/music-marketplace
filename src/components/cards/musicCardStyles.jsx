@@ -16,6 +16,12 @@ export const ToggleButton = styled.button`
     background-color: #005fa3;
   }
 `;
+export const StyledDiv = styled.div`
+  margin: 5px;
+  padding: 10px;
+  background-color: #303030;
+  border-radius: 5px;
+`;
 export const ToggleViewButton = styled.button`
   padding: 10px 15px;
   margin: 10px;

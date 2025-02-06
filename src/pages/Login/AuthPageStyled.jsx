@@ -11,6 +11,13 @@ export const PageContainer = styled.div`
   background-repeat: no-repeat;
 `;
 
+export const StyledDiv = styled.div`
+  margin: 5px;
+  padding: 10px;
+  background-color: #303030;
+  border-radius: 5px;
+`;
+
 export const AuthCard = styled.div`
   background: rgba(0, 0, 0, 0.8); // Semi-transparent black background
   padding: 2.5rem;

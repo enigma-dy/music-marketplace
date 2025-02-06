@@ -13,6 +13,13 @@ export const Card = styled.div`
   }
 `;
 
+export const StyledDiv = styled.div`
+  margin: 5px;
+  padding: 10px;
+  background-color: #303030;
+  border-radius: 5px;
+`;
+
 export const DataTableWrapper = styled.div`
   .p-datatable {
     margin-top: 20px;
@@ -27,7 +34,7 @@ export const DataTableWrapper = styled.div`
   .p-datatable-thead > tr > th,
   .p-datatable-tbody > tr > td {
     padding: 12px;
-    
+
     font-size: 14px;
     background-color: #121212;
     border: 1px solid #121212;
@@ -42,9 +49,6 @@ export const DataTableWrapper = styled.div`
     color: white;
   }
 
-  
-
-  
   @media (max-width: 768px) {
     .p-datatable-tbody > tr > td {
       font-size: 12px;
@@ -60,7 +64,6 @@ export const DataTableWrapper = styled.div`
       display: none;
     }
 
-  
     .p-datatable-tbody > tr > td:nth-child(8),
     .p-datatable-thead > tr > th:nth-child(8) {
       display: table-cell !important;
@@ -69,16 +72,15 @@ export const DataTableWrapper = styled.div`
       padding-left: 30px;
     }
 
-    
     .p-datatable {
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch; 
+      -webkit-overflow-scrolling: touch;
     }
   }
 
   @media (max-width: 390px) {
     display: none;
-    }
+  }
 `;
 
 export const PlayPauseButton = styled.button`

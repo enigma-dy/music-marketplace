@@ -8,6 +8,7 @@ import {
   DesktopDisplay,
   MobileMenuDisplay,
   Divider,
+  StyledDiv,
 } from "../../pages/Home/styles/NavStyles";
 import DesktopMenu from "../../components/desktop-menu/DesktopMenu";
 import MobileMenu from "../../components/mobile-menu/MobileMenu";
@@ -18,7 +19,7 @@ import {
 import { useCheckAuthStatusQuery } from "../../store/apiSlice";
 import { setCredentials } from "../../store/authSlice";
 import { useMediaQuery } from "react-responsive";
-import Skeleton from "react-loading-skeleton";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Navigation() {
@@ -46,9 +47,11 @@ export default function Navigation() {
 
   if (isLoading) {
     return (
-      <div>
-        <Skeleton />
-      </div>
+      <StyledDiv>
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <Skeleton />
+        </SkeletonTheme>
+      </StyledDiv>
     );
   }
 

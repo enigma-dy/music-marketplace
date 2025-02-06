@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { TreeContainer, StyledTree } from "./MultiSelectFilterStyled";
+import {
+  TreeContainer,
+  StyledTree,
+  StyledDiv,
+} from "./MultiSelectFilterStyled";
 import { useGetGenresListQuery } from "../../store/apiSlice";
 import { useLocation, useNavigate } from "react-router";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function TreeWithCheckboxDemo() {
   const { data, error, isLoading } = useGetGenresListQuery();
@@ -51,6 +57,16 @@ export default function TreeWithCheckboxDemo() {
       search: `?${newQueryParams.toString()}`,
     });
   };
+
+  if (isLoading) {
+    return (
+      <StyledDiv>
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <Skeleton />
+        </SkeletonTheme>
+      </StyledDiv>
+    );
+  }
 
   return (
     <TreeContainer>

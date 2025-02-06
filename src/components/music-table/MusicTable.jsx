@@ -4,7 +4,7 @@ import { Column } from "primereact/column";
 import { useGetTracksQuery } from "../../store/apiSlice";
 import truncateText from "../../util/truncateText";
 import { formatDistanceToNow } from "date-fns";
-import Skeleton from "react-loading-skeleton";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import {
@@ -16,6 +16,7 @@ import {
   OptionItem,
   NumberWrapper,
   NumberText,
+  StyledDiv,
 } from "./MusicTableStyles";
 
 export default function SongDataTable() {
@@ -27,9 +28,11 @@ export default function SongDataTable() {
 
   if (isLoading) {
     return (
-      <div>
-        <Skeleton />
-      </div>
+      <StyledDiv>
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <Skeleton />
+        </SkeletonTheme>
+      </StyledDiv>
     );
   }
 

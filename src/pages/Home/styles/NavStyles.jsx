@@ -14,6 +14,12 @@ export const MobileMenuDisplay = styled.div`
     display: block;
   }
 `;
+export const StyledDiv = styled.div`
+  margin: 5px;
+  padding: 10px;
+  background-color: #303030;
+  border-radius: 5px;
+`;
 
 export const NavStyles = styled.div`
   width: 100%;

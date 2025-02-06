@@ -9,6 +9,7 @@ import {
   Button,
   ToggleLink,
   Error,
+  StyledDiv,
 } from "./AuthPageStyled";
 import {
   useLoginMutation,
@@ -114,9 +115,11 @@ export default function AuthPage() {
 
   if (isLoading) {
     return (
-      <div>
-        <Skeleton />
-      </div>
+      <StyledDiv>
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <Skeleton />
+        </SkeletonTheme>
+      </StyledDiv>
     );
   }
 

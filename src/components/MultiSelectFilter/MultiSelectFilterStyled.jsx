@@ -28,6 +28,12 @@ export const TreeContainer = styled.div`
     background: #a8a8a8;
   }
 `;
+export const StyledDiv = styled.div`
+  margin: 5px;
+  padding: 10px;
+  background-color: #303030;
+  border-radius: 5px;
+`;
 
 export const StyledTree = styled(Tree)`
   .p-tree-container {

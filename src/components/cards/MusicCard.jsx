@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "primeicons/primeicons.css";
-import Skeleton from "react-loading-skeleton";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import {
   CardContainer,
@@ -15,6 +15,7 @@ import {
   ToggleViewButton,
   NavButton,
   PriceStyle,
+  StyledDiv,
 } from "./musicCardStyles";
 import { useGetTracksQuery } from "../../store/apiSlice";
 import { Dialog } from "primereact/dialog";
@@ -97,9 +98,11 @@ export default function SongCard() {
 
   if (isLoading)
     return (
-      <div>
-        <Skeleton />
-      </div>
+      <StyledDiv>
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <Skeleton />
+        </SkeletonTheme>
+      </StyledDiv>
     );
   if (isError || !data || !data.track)
     return <div>Error loading songs or no songs available</div>;
