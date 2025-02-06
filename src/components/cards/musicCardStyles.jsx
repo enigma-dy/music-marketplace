@@ -16,7 +16,7 @@ export const ToggleButton = styled.button`
     background-color: #005fa3;
   }
 `;
-const ToggleViewButton = styled.button`
+export const ToggleViewButton = styled.button`
   padding: 10px 15px;
   margin: 10px;
   border: none;
