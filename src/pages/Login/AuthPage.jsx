@@ -17,6 +17,8 @@ import {
 } from "../../store/apiSlice";
 import { setCredentials } from "../../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -111,7 +113,11 @@ export default function AuthPage() {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   }
 
   return (

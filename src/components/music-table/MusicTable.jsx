@@ -4,6 +4,8 @@ import { Column } from "primereact/column";
 import { useGetTracksQuery } from "../../store/apiSlice";
 import truncateText from "../../util/truncateText";
 import { formatDistanceToNow } from "date-fns";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import {
   Card,
@@ -24,7 +26,11 @@ export default function SongDataTable() {
   const { data: apiResponse = {}, isLoading, error } = useGetTracksQuery();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   }
 
   if (error) {

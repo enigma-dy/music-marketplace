@@ -18,6 +18,8 @@ import {
 import { useCheckAuthStatusQuery } from "../../store/apiSlice";
 import { setCredentials } from "../../store/authSlice";
 import { useMediaQuery } from "react-responsive";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Navigation() {
   const navigate = useNavigate();
@@ -43,7 +45,11 @@ export default function Navigation() {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Skeleton />
+      </div>
+    );
   }
 
   return (
