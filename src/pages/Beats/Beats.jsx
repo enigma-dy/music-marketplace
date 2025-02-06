@@ -57,7 +57,8 @@ const TracksPage = () => {
         {data.track.map((track) => (
           <TrackItem key={track._id} coverImage={track.coverImagePath}>
             <TrackTitle>{track.title}</TrackTitle>
-            <TrackArtist>By {track.createdBy}</TrackArtist>
+            <TrackArtist>By {track.createdBy.username}</TrackArtist>
+
             <TrackDescription>{track.description}</TrackDescription>
             <TrackTags>
               Tags:{" "}

@@ -19,7 +19,7 @@ const LoaderContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5; /* Light gray background */
+  background-color: #f5f5f5;
 `;
 
 function LoadingSpinner() {

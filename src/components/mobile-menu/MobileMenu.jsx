@@ -12,25 +12,28 @@ const MobileMenuDisplay = styled.div`
 
 const FullScreenMenu = styled.div`
   position: fixed;
-  top: 100px;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
+  justify-content: center;
   z-index: 1000;
   visibility: ${(props) => (props.visible ? "visible" : "hidden")};
   opacity: ${(props) => (props.visible ? "1" : "0")};
-  transition: opacity 0.3s, visibility 0.3s;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
   .menu-items {
-    width: 80%;
+    width: 90%;
     max-width: 400px;
     color: #fff;
     text-align: center;
+    transform: ${(props) =>
+      props.visible ? "translateY(0)" : "translateY(-20px)"};
+    transition: transform 0.3s ease-in-out;
 
     .p-tieredmenu {
       border: none;
@@ -39,10 +42,18 @@ const FullScreenMenu = styled.div`
 
       .p-menuitem {
         color: #fff;
+        margin: 10px 0;
 
         .p-menuitem-link {
           color: #fff;
           font-size: 1.2rem;
+          padding: 15px 20px;
+          border-radius: 8px;
+          transition: background-color 0.3s ease-in-out;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+          }
 
           .p-menuitem-icon {
             margin-right: 0.5rem;
@@ -57,9 +68,12 @@ const MenuButton = styled(Button)`
   background: transparent;
   border: none;
   color: #fff;
+  padding: 10px;
+  transition: transform 0.3s ease-in-out;
 
   &:hover {
     background: transparent;
+    transform: scale(1.1);
   }
 
   i {
@@ -114,11 +128,7 @@ export default function MobileMenu() {
           />
           <FullScreenMenu visible={menuVisible}>
             <div className="menu-items">
-              <TieredMenu
-                model={items}
-                popup={false}
-                // style={{ maxHeight: "80vh", overflowY: "auto" }} // Prevent overflow
-              />
+              <TieredMenu model={items} popup={false} />
             </div>
           </FullScreenMenu>
         </>
