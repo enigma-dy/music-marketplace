@@ -24,6 +24,7 @@ export const StatusMessage = styled.div`
 
 export const PackCard = styled.div`
   background-color: #fff;
+  background-image: url(${(props) => props.backgroundImage});
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;

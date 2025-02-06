@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useGetTracksQuery } from "../../store/apiSlice";
+import 'primeicons/primeicons.css';
+ 
 import {
   Container,
   TrackList,
@@ -17,6 +19,8 @@ import {
 const TracksPage = () => {
   const { data, error, isLoading } = useGetTracksQuery();
   const [isPlaying, setIsPlaying] = useState({});
+
+  console.log(data)
 
   if (isLoading) {
     return <div>Loading tracks...</div>;
@@ -51,41 +55,53 @@ const TracksPage = () => {
       <h1>Tracks</h1>
       <TrackList>
         {data.track.map((track) => (
-          <TrackItem key={track._id}>
-            <TrackTitle>{track.title}</TrackTitle>
-            <TrackArtist>By {track.artist}</TrackArtist>
-            <TrackDescription>{track.description}</TrackDescription>
-            <TrackTags>
-              Tags:{" "}
-              {track.tags.map((tag, idx) => (
-                <span key={idx}>{tag}</span>
-              ))}
-            </TrackTags>
-            <TrackPrice>Price: ${track.price}</TrackPrice>
-            <PlayPauseButton onClick={() => handlePlayPause(track._id)}>
-              {isPlaying[track._id] ? "⏸" : "▶️"}
-            </PlayPauseButton>
-            <ButtonGroup>
-              <Button
-                onClick={() => handleBuy(track._id)}
-                bgColor="#007bff"
-                hoverColor="#0056b3">
-                Buy
-              </Button>
-              <Button
-                onClick={() => handleRequestChanges(track._id)}
-                bgColor="#ff9800"
-                hoverColor="#e68900">
-                Request Changes
-              </Button>
-              <Button
-                onClick={() => handleBid(track._id)}
-                bgColor="#673ab7"
-                hoverColor="#512da8">
-                Bid
-              </Button>
-            </ButtonGroup>
-          </TrackItem>
+          <TrackList>
+          {data.track.map((track) => (
+            <TrackItem key={track._id} coverImage={track.coverImagePath}>
+              <TrackTitle>{track.title}</TrackTitle>
+              <TrackArtist>By {track.createdBy}</TrackArtist>
+              <TrackDescription>{track.description}</TrackDescription>
+              <TrackTags>
+                Tags:{" "}
+                {track.tags.map((tag, idx) => (
+                  <span key={idx}>{tag}</span>
+                ))}
+              </TrackTags>
+              <TrackPrice>Price: ${track.price}</TrackPrice>
+              <PlayPauseButton onClick={() => handlePlayPause(track._id)}>
+                {isPlaying[track._id] ? (
+                  <i className="pi pi-pause"></i>
+                ) : (
+                  <i className="pi pi-play"></i>
+                )}
+              </PlayPauseButton>
+              <ButtonGroup>
+                <Button
+                  onClick={() => handleBuy(track._id)}
+                  bgColor="#007bff"
+                  hoverColor="#0056b3"
+                >
+                  Buy
+                </Button>
+                <Button
+                  onClick={() => handleRequestChanges(track._id)}
+                  bgColor="#ff9800"
+                  hoverColor="#e68900"
+                >
+                  Request Changes
+                </Button>
+                <Button
+                  onClick={() => handleBid(track._id)}
+                  bgColor="#673ab7"
+                  hoverColor="#512da8"
+                >
+                  Bid
+                </Button>
+              </ButtonGroup>
+            </TrackItem>
+          ))}
+        </TrackList>
+        
         ))}
       </TrackList>
     </Container>

@@ -15,7 +15,7 @@ export default function DesktopMenu() {
         <li key={index} className="tabmenu-item">
           <StyledLink to={item.path} className="menu-link">
             {item.icon && <i className={`icon ${item.icon}`}></i>}
-            {item.label}
+            <span>{item.label}</span>
           </StyledLink>
         </li>
       ))}

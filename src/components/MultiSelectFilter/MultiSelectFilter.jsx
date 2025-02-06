@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { TreeContainer, StyledTree } from "./MultiSelectFilterStyled";
-import { useGetGenresQuery } from "../../store/apiSlice";
+import { useGetGenresListQuery } from "../../store/apiSlice";
 import { useLocation, useNavigate } from "react-router";
 
 export default function TreeWithCheckboxDemo() {
-  const { data, error, isLoading } = useGetGenresQuery();
+  const { data, error, isLoading } = useGetGenresListQuery();
   const [treeData, setTreeData] = useState([]);
   const [selectedNodes, setSelectedNodes] = useState({});
   const location = useLocation();
@@ -37,30 +37,19 @@ export default function TreeWithCheckboxDemo() {
     const selectedGenres = e.value;
     setSelectedNodes(selectedGenres);
 
-    const selectedGenreIds = Object.keys(selectedGenres).filter(
-      (key) => selectedGenres[key]
-    );
+    const selectedGenreIds = Object.keys(selectedGenres)
+      .filter((key) => selectedGenres[key])
+      .filter((key) => key !== "0");
 
-    // Modify the query parameters to reflect the selected genres
     const newQueryParams = new URLSearchParams();
     selectedGenreIds.forEach((genreId) =>
-      newQueryParams.append("genre", genreId)
+      newQueryParams.append("genreId", genreId)
     );
 
-    // Check if we're already on the genre page
-    if (location.pathname !== "/genre") {
-      // Navigate to genre page first and then update query parameters
-      navigate({
-        pathname: "/genre",
-        search: `?${newQueryParams.toString()}`,
-      });
-    } else {
-      // If we're already on the genre page, update the query parameters without reloading the page
-      navigate({
-        pathname: location.pathname,
-        search: `?${newQueryParams.toString()}`,
-      });
-    }
+    navigate({
+      pathname: "/genres",
+      search: `?${newQueryParams.toString()}`,
+    });
   };
 
   if (isLoading) return <p>Loading genres...</p>;

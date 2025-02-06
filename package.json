@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:sync": "node browsersync.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -18,13 +19,18 @@
     "react-dom": "^18.3.1",
     "react-feather": "^2.0.10",
     "react-redux": "^9.2.0",
-    "react-transition-group": "^4.4.5"
+    "react-responsive": "^10.0.0",
+    "react-router": "^7.1.1",
+    "react-transition-group": "^4.4.5",
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "browser-sync": "^2.29.3",
+    "browser-sync-webpack-plugin": "^2.3.0",
     "eslint": "^9.15.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",

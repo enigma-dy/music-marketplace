@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+import { useLocation } from "react-router";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: `import.meta.env.VITE_BASE_URL/api`,
     credentials: "include",
   }),
   tagTypes: [
@@ -46,7 +46,7 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Profile"],
     }),
-    //getall producers
+    // getall producers
     getProducers: builder.query({
       query: () => "/user/producers",
       providesTags: ["Producers"],
@@ -56,10 +56,16 @@ export const apiSlice = createApi({
       providesTags: ["Producers"],
     }),
     // Genres
-    getGenres: builder.query({
+    getGenresList: builder.query({
       query: () => "/genre",
       providesTags: ["Genres"],
     }),
+
+    getGenresWithSongs: builder.query({
+      query: (queryString = "") => `/genre/songs${queryString}`,
+      providesTags: ["Genres"],
+    }),
+
     createGenre: builder.mutation({
       query: (newGenre) => ({
         url: "/genre",
@@ -71,8 +77,14 @@ export const apiSlice = createApi({
 
     // Tracks
     getTracks: builder.query({
-      query: () => "/tracks",
+      query: (page = 1) => `/tracks?page=${page}`,
       providesTags: ["Tracks"],
+    }),
+    streamTrack: builder.query({
+      query: (trackId) => ({
+        url: `/tracks/stream/${trackId}`,
+        method: "GET",
+      }),
     }),
     createTrack: builder.mutation({
       query: (trackData) => ({
@@ -82,7 +94,7 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Tracks"],
     }),
-    //Packs
+    // Packs
     getPacks: builder.query({
       query: () => "/packs",
       providesTags: ["Packs"],
@@ -100,6 +112,10 @@ export const apiSlice = createApi({
       query: () => "/order/orders",
       providesTags: ["Orders"],
     }),
+    getPlaylists: builder.query({
+      query: () => "/playlist",
+    }),
+
     createOrder: builder.mutation({
       query: (orderData) => ({
         url: "/order/beat",
@@ -118,9 +134,13 @@ export const {
   useUpdateUserProfileMutation,
   useGetProducersQuery,
   useGetBeatByProducerQuery,
-  useGetGenresQuery,
+  useGetGenresListQuery,
+  useGetGenresWithSongsQuery,
   useCreateGenreMutation,
   useGetTracksQuery,
+  useStreamTrackQuery,
+  useUploadPacksMutation,
+  useGetPlaylistsQuery,
   useGetPacksQuery,
   useCreateTrackMutation,
   useGetOrdersQuery,

@@ -8,6 +8,7 @@ import {
   InputGroup,
   Button,
   ToggleLink,
+  Error,
 } from "./AuthPageStyled";
 import {
   useLoginMutation,
@@ -31,21 +32,18 @@ export default function AuthPage() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
 
-  // Fetch user auth status and loading state
   const { data: userData, isLoading, isError } = useCheckAuthStatusQuery();
 
   useEffect(() => {
-    // Once the user status is checked and available, update the Redux state
     if (userData?.user) {
       dispatch(setCredentials({ user: userData.user }));
-      navigate("/"); // Redirect to homepage if logged in
+      navigate("/");
     }
   }, [userData, dispatch, navigate]);
 
-  // Redirect the user to the homepage if they are already authenticated
   useEffect(() => {
     if (user) {
-      navigate("/"); // Redirect to homepage if user is logged in
+      navigate("/");
     }
   }, [user, navigate]);
 
@@ -87,8 +85,8 @@ export default function AuthPage() {
           role: formData.role,
         }).unwrap();
         alert("Registration successful!");
-        dispatch(setCredentials({ user: response.user })); // Store user data in Redux
-        navigate("/"); // Redirect to homepage
+        dispatch(setCredentials({ user: response.user }));
+        navigate("/");
       } catch (err) {
         console.error("Sign-up Error:", err);
       }
@@ -104,8 +102,8 @@ export default function AuthPage() {
           password: formData.password,
         }).unwrap();
         alert("Login successful!");
-        dispatch(setCredentials({ user: response.user })); // Store user data in Redux
-        navigate("/"); // Redirect to homepage
+        dispatch(setCredentials({ user: response.user }));
+        navigate("/");
       } catch (err) {
         console.error("Login Error:", err);
       }
@@ -113,7 +111,7 @@ export default function AuthPage() {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>; // Show loading screen while checking auth status
+    return <div>Loading...</div>;
   }
 
   return (
@@ -157,7 +155,8 @@ export default function AuthPage() {
                   id="role"
                   name="role"
                   value={formData.role}
-                  onChange={handleChange}>
+                  onChange={handleChange}
+                >
                   <option value="producer">Producer</option>
                   <option value="artist">Artist</option>
                   <option value="admin">Admin</option>
@@ -192,13 +191,12 @@ export default function AuthPage() {
           </Button>
         </form>
 
-        {/* Display error messages */}
         {(loginError || registerError) && (
-          <p className="text-red-500 text-center">
+          <Error>
             {loginError?.data?.message ||
               registerError?.data?.message ||
               "An error occurred"}
-          </p>
+          </Error>
         )}
 
         <ToggleLink>

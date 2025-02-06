@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  max-width: 1000px;
+  max-width: 1440px;
   margin: 50px auto;
   padding: 30px;
-  /* background-color: #1e1e2f; */
   border-radius: 15px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   color: #fff;
@@ -20,6 +19,7 @@ export const TrackList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -27,6 +27,9 @@ export const TrackList = styled.ul`
 
 export const TrackItem = styled.li`
   background-color: #29293d;
+  background-image: ${(props) => `url(${props.coverImage})`};
+  background-size: cover;
+  background-position: center;
   border: 1px solid #3c3c4f;
   border-radius: 10px;
   padding: 20px;
@@ -34,12 +37,14 @@ export const TrackItem = styled.li`
   box-sizing: border-box;
   position: relative;
   transition: transform 0.2s, box-shadow 0.2s;
+  color: #fff;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
   }
 `;
+
 
 export const TrackTitle = styled.h2`
   font-size: 20px;
@@ -86,7 +91,8 @@ export const PlayPauseButton = styled.button`
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: #4caf50;
+  /* background-color: #4caf50; */
+  background: none;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -111,6 +117,7 @@ export const PlayPauseButton = styled.button`
 
 export const ButtonGroup = styled.div`
   display: flex;
+  gap: 5px;
   justify-content: space-between;
   margin-top: 15px;
 `;
@@ -120,8 +127,8 @@ export const Button = styled.button`
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 10px 15px;
-  font-size: 14px;
+  padding: 7px 10px;
+  font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 

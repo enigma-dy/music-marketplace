@@ -16,6 +16,7 @@ import {
 
 const Packs = () => {
   const { data, error, isLoading } = useGetPacksQuery();
+  console.log(data)
 
   if (isLoading) {
     return <Loader>Loading packs...</Loader>;
@@ -36,7 +37,7 @@ const Packs = () => {
   return (
     <Container>
       {data.packs.map((pack) => (
-        <PackCard key={pack._id}>
+        <PackCard key={pack._id} $backgroundImage={pack.coverImage}>
           <Title>{pack.title}</Title>
           <Description>{pack.description}</Description>
           <Detail>Price: ${pack.price}</Detail>

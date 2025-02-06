@@ -27,7 +27,7 @@ export const DataTableWrapper = styled.div`
   .p-datatable-thead > tr > th,
   .p-datatable-tbody > tr > td {
     padding: 12px;
-    text-align: center;
+    
     font-size: 14px;
     background-color: #121212;
     border: 1px solid #121212;
@@ -42,45 +42,43 @@ export const DataTableWrapper = styled.div`
     color: white;
   }
 
-  /* .p-datatable-tbody > tr > td:nth-child(7) {
-    padding: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
+  
 
-  /* mobile view */
+  
   @media (max-width: 768px) {
     .p-datatable-tbody > tr > td {
       font-size: 12px;
-      padding: 2px;
+      /* padding: 2px; */
     }
     .p-datatable-thead > tr > th {
       font-size: 12px;
-      padding-left: 80px;
+      padding-left: 30px;
     }
 
-    /* Hide non-essential columns*/
     .p-datatable-tbody > tr > td:nth-child(n + 4),
     .p-datatable-thead > tr > th:nth-child(n + 4) {
       display: none;
     }
 
-    /* Play/Pause button remains visible */
+  
     .p-datatable-tbody > tr > td:nth-child(8),
     .p-datatable-thead > tr > th:nth-child(8) {
       display: table-cell !important;
     }
     .p-datatable-tbody > tr > td:nth-child(8) {
-      padding-left: 80px;
+      padding-left: 30px;
     }
 
-    /* horizontally scrollable */
+    
     .p-datatable {
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling */
+      -webkit-overflow-scrolling: touch; 
     }
   }
+
+  @media (max-width: 390px) {
+    display: none;
+    }
 `;
 
 export const PlayPauseButton = styled.button`

@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetProducersQuery } from "../../store/apiSlice";
 import {
   ProducerListContainer,

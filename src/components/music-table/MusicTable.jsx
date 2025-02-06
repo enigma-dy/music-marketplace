@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { useGetTracksQuery } from "../../store/apiSlice";
 import truncateText from "../../util/truncateText";
+import { formatDistanceToNow } from "date-fns";
+
 import {
   Card,
   DataTableWrapper,
@@ -34,23 +36,21 @@ export default function SongDataTable() {
   const handlePlayPauseClick = async (index, trackId) => {
     try {
       if (playingIndex === index && audioPlayer) {
-        // Pause if already playing
         audioPlayer.pause();
         setPlayingIndex(null);
         return;
       }
 
-      // Fetch the track stream
-      const response = await fetch(`/api/tracks/stream/${trackId}`);
+      const response = await fetch(
+        `import.meta.env.VITE_BASE_URL/api/tracks/stream/${trackId}`
+      );
       if (!response.ok) {
         throw new Error("Unable to stream track. Please try again later.");
       }
 
-      // Play the fetched stream
       const audioUrl = URL.createObjectURL(await response.blob());
       const newAudioPlayer = new Audio(audioUrl);
 
-      // Clean up previous audio player
       if (audioPlayer) {
         audioPlayer.pause();
         audioPlayer.src = "";
@@ -60,7 +60,6 @@ export default function SongDataTable() {
       setAudioPlayer(newAudioPlayer);
       setPlayingIndex(index);
 
-      // Stop playback when the track ends
       newAudioPlayer.onended = () => {
         setPlayingIndex(null);
         setAudioPlayer(null);
@@ -74,17 +73,11 @@ export default function SongDataTable() {
     setActiveMenuIndex(activeMenuIndex === index ? null : index);
   };
 
-  const descriptionTemplate = (rowData) => {
-    return (
-      <span title={rowData.description}>
-        {truncateText(rowData.description, 5)}
-      </span>
-    );
-  };
-
   const artistTemplate = (rowData) => {
     return (
-      <span title={rowData.artist}>{truncateText(rowData.artist, 10)}</span>
+      <span title={rowData.createdBy.username}>
+        {truncateText(rowData.createdBy.username, 10)}
+      </span>
     );
   };
 
@@ -93,7 +86,8 @@ export default function SongDataTable() {
 
     return (
       <PlayPauseButton
-        onClick={() => handlePlayPauseClick(options.rowIndex, rowData._id)}>
+        onClick={() => handlePlayPauseClick(options.rowIndex, rowData._id)}
+      >
         <i className={`pi ${isPlaying ? "pi-pause" : "pi-play"}`} />
       </PlayPauseButton>
     );
@@ -124,28 +118,41 @@ export default function SongDataTable() {
     );
   };
 
+  const timeAgo = (date) => {
+    const parsedDate = new Date(date);
+    if (isNaN(parsedDate)) {
+      return "";
+    }
+    return formatDistanceToNow(parsedDate, { addSuffix: true });
+  };
+
+  const createdAtTemplate = (rowData) => {
+    return <span>{timeAgo(rowData.createdAt)}</span>;
+  };
+
+  const updatedAtTemplate = (rowData) => {
+    return <span>{timeAgo(rowData.updatedAt)}</span>;
+  };
+
   return (
-    <Card>
-      <DataTableWrapper>
-        <DataTable
-          value={songs}
-          tableStyle={{ minWidth: "50rem" }}
-          paginator
-          rows={5}
-          rowsPerPageOptions={[5, 10, 20]}>
-          <Column body={numberTemplate} header="No." />
-          <Column field="title" header="Song Title" />
-          <Column body={artistTemplate} header="Artist" />
-          <Column field="genre.name" header="Genre" />
-          <Column body={descriptionTemplate} header="Description" />
-          <Column field="price" header="Price" />
-          <Column field="license" header="License" />
-          <Column field="createdAt" header="Created At" />
-          <Column field="updatedAt" header="Updated At" />
-          <Column body={playPauseTemplate} header="Play/Pause" />
-          <Column body={menuTemplate} header="Actions" />
-        </DataTable>
-      </DataTableWrapper>
-    </Card>
+    <DataTableWrapper>
+      <DataTable
+        value={songs}
+        tableStyle={{ minWidth: "50rem" }}
+        paginator
+        rows={5}
+        rowsPerPageOptions={[5, 10, 20]}
+      >
+        <Column body={numberTemplate} header="No." />
+        <Column field="title" header="Song Title" />
+        <Column body={artistTemplate} header="Artist" />
+        <Column field="genre.name" header="Genre" />
+        <Column field="price" header="Price" />
+        <Column field="license" header="License" />
+        <Column body={createdAtTemplate} header="Created At" />
+        <Column body={playPauseTemplate} header="Play/Pause" />
+        <Column body={menuTemplate} header="Actions" />
+      </DataTable>
+    </DataTableWrapper>
   );
 }

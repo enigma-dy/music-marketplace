@@ -41,8 +41,16 @@ export const StyledTabMenu = styled.ul`
     .icon {
       margin-right: 8px;
     }
+
+    /* Dynamically adjust font size */
+    span {
+      font-size: clamp(0.8rem, 2vw, 1.2rem); /* Min 0.8rem, scales up to 1.2rem */
+      white-space: nowrap; /* Prevents wrapping */
+    }
   }
+
 `;
+
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
@@ -52,11 +60,15 @@ export const StyledLink = styled(Link)`
   &:hover {
     color: inherit;
   }
+
+  
 `;
 export const DesktopDisplayStyle = styled.div`
   display: block;
 
   @media (max-width: 768px) {
     display: none;
+    
   }
 `;
+

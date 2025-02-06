@@ -1,8 +1,8 @@
-import React from "react";
 import Navigation from "../navigation/Navigation";
 import SidePanel from "../side-panel/SidePanel";
 import { Outlet } from "react-router";
 import {
+  LayoutStyle,
   Header,
   LayoutContainer,
   SidePanelContainer,
@@ -11,11 +11,10 @@ import {
 
 const Layout = () => {
   return (
-    <>
+    <LayoutStyle>
       <Header>
         <Navigation />
       </Header>
-
       <LayoutContainer>
         <SidePanelContainer>
           <SidePanel />
@@ -25,7 +24,7 @@ const Layout = () => {
           <Outlet />
         </MainContent>
       </LayoutContainer>
-    </>
+    </LayoutStyle>
   );
 };
 
