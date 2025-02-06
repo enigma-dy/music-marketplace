@@ -37,6 +37,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="beats" element={<TracksPage />} />
+          <Route path="category" element={<TracksPage />} />
           <Route path="packs" element={<Packs />} />
           <Route path="genres" element={<GenresPage />} />
           <Route path="producer" element={<Producer />} />
