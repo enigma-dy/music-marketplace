@@ -28,6 +28,8 @@ export default function SongDataTable() {
   }
 
   if (error) {
+    console.log("API Response:", apiResponse);
+    console.log("Error:", error);
     return <div>Error fetching tracks data.</div>;
   }
 

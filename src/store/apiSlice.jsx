@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { useLocation } from "react-router";
+
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: `import.meta.env.VITE_BASE_URL/api`,
+    baseUrl: "https://music-marketplace-backend.onrender.com/api",
     credentials: "include",
   }),
   tagTypes: [

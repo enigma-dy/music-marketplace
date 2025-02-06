@@ -100,7 +100,7 @@ export default function SongCard() {
     <div>
       <div>
         <button onClick={toggleView}>
-          {isGridView ? "Switch to List View" : "Switch to Grid View"}
+          <i className={isGridView ? "pi pi-bars" : "pi pi-th-large"}></i>
         </button>
       </div>
       <CardContainer $isGridView={isGridView}>
