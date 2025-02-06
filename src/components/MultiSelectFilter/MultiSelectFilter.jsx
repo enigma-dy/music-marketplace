@@ -52,9 +52,6 @@ export default function TreeWithCheckboxDemo() {
     });
   };
 
-  if (isLoading) return <p>Loading genres...</p>;
-  if (error) return <p>Error loading genres</p>;
-
   return (
     <TreeContainer>
       <StyledTree

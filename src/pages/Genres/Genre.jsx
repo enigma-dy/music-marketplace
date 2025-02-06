@@ -2,17 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import { useGetGenresWithSongsQuery } from "../../store/apiSlice";
 import { useLocation } from "react-router";
-import { SongOwner,SongTitle,SongInfo,SongImage,SongItem,SongList,GenreHeader,Container } from "./GenreStyled";
+import {
+  SongOwner,
+  SongTitle,
+  SongInfo,
+  SongImage,
+  SongItem,
+  SongList,
+  GenreHeader,
+  Container,
+} from "./GenreStyled";
 
 const GenresPage = () => {
-  const location = useLocation(); 
-  const queryString = location.search; 
+  const location = useLocation();
+  const queryString = location.search;
   const { data, isLoading, error } = useGetGenresWithSongsQuery(queryString);
-  console.log(data)
-  
-  if (isLoading) {
-    return <p>Loading genres...</p>;
-  }
+  console.log(data);
 
   if (error) {
     return <p>Failed to load genres. Please try again later.</p>;
