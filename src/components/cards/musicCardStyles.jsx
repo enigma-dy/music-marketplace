@@ -16,7 +16,28 @@ export const ToggleButton = styled.button`
     background-color: #005fa3;
   }
 `;
+const ToggleViewButton = styled.button`
+  padding: 10px 15px;
+  margin: 10px;
+  border: none;
+  background-color: #007ad9;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
 
+  &:hover {
+    background-color: #005fa3;
+  }
+
+  i {
+    font-size: 1.2rem;
+  }
+`;
 export const CardContainer = styled.div`
   display: ${(props) => (props.$isGridView ? "grid" : "block")};
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -46,7 +67,6 @@ export const ListView = styled.div`
     transition: background-color 0.3s ease;
   }
 `;
-
 
 export const ListImage = styled.div`
   flex: 0 0 80px;
@@ -83,7 +103,6 @@ export const ListActions = styled.div`
   align-items: center;
   margin-top: 10px;
   padding: 5px;
-  
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -99,10 +118,10 @@ export const StyledButton = styled.button`
   font-size: 16px;
   color: white;
   transition: transform 0.3s ease, background-color 0.3s ease, border 0.3s ease;
-  border-radius: 100%; 
-  display: flex; 
+  border-radius: 100%;
+  display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 
   &.play {
     background: none;
@@ -122,9 +141,9 @@ export const StyledButton = styled.button`
   &:hover {
     transform: scale(1.1);
     filter: brightness(1.1);
-    border: 2px solid white; 
+    border: 2px solid white;
   }
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     height: 30px;
     margin: 0px;
   }
@@ -142,7 +161,7 @@ export const StyledCard = styled(Card)`
   background-image: ${(props) => `url(${props.backgroundImage})`};
   background-size: cover;
   background-position: center;
-  position:relative;
+  position: relative;
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -153,22 +172,21 @@ export const StyledCard = styled(Card)`
   .p-card-title {
     font-size: 20px;
     color: #f6f6f6;
-    margin:20px;
+    margin: 20px;
   }
 
   .p-card-subtitle {
     font-size: 14px;
     color: #777;
-    margin:20px;
+    margin: 20px;
   }
 
   .p-card-footer {
-    position:absolute;
-    bottom:5px;
+    position: absolute;
+    bottom: 5px;
     gap: 1em;
-    
-    width:100%;
-    
+
+    width: 100%;
   }
 
   @media (max-width: 600px) {
@@ -176,37 +194,34 @@ export const StyledCard = styled(Card)`
     margin: 0 auto;
 
     .p-card-title {
-    font-size: 20px;
-    color: #f6f6f6;
-    margin:5px;
-  }
+      font-size: 20px;
+      color: #f6f6f6;
+      margin: 5px;
+    }
 
-  .p-card-subtitle {
-    font-size: 14px;
-    color: #777;
-    margin:5px;
-  }
+    .p-card-subtitle {
+      font-size: 14px;
+      color: #777;
+      margin: 5px;
+    }
 
-  .p-card-footer {
-    position:absolute;
-    bottom:5px;
-    gap: 1em;
-    
-    width:100%;
-    
-  }
+    .p-card-footer {
+      position: absolute;
+      bottom: 5px;
+      gap: 1em;
+
+      width: 100%;
+    }
   }
 `;
 export const PriceStyle = styled.p`
   margin: 20px;
   font-size: 20px;
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     font-size: 15px;
     margin: 10px;
-
-    
   }
-`
+`;
 export const SongDetails = styled.div`
   margin-top: 8px;
   font-size: 14px;
@@ -220,8 +235,6 @@ export const SongDetails = styled.div`
     margin: 0;
   }
 `;
-
-
 
 export const Button = styled.button`
   background-color: #4caf50;
@@ -286,4 +299,4 @@ export const NavButton = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-`
+`;

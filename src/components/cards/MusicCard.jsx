@@ -10,6 +10,7 @@ import {
   StyledButton,
   StyledCard,
   NextButton,
+  ToggleViewButton,
   NavButton,
   PriceStyle,
 } from "./musicCardStyles";
@@ -65,7 +66,7 @@ export default function SongCard() {
       }
 
       const response = await fetch(
-        `import.meta.env.VITE_BASE_URL/api/tracks/stream/${trackId}`
+        `https://music-marketplace-backend.onrender.com/api/tracks/stream/${trackId}`
       );
       if (!response.ok) {
         throw new Error("Unable to stream track. Please try again later.");
@@ -98,11 +99,11 @@ export default function SongCard() {
 
   return (
     <div>
-      <div>
+      <ToggleViewButton>
         <button onClick={toggleView}>
           <i className={isGridView ? "pi pi-bars" : "pi pi-th-large"}></i>
         </button>
-      </div>
+      </ToggleViewButton>
       <CardContainer $isGridView={isGridView}>
         {data.track.map((song, index) => (
           <CardWrapper key={index} $isGridView={isGridView}>
